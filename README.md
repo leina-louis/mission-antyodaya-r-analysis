@@ -97,6 +97,8 @@ Predictor variables were grouped into four broad themes:
 
 ## Key Findings
 
+<img width="2700" height="1800" alt="state_level_coefficients_scaled" src="https://github.com/user-attachments/assets/1f62fe52-f56a-468f-a918-db45b41e19b5" />
+
 Across multiple modelling approaches, several consistent patterns emerged.
 
 * Villages with higher enrolment pressure tended to exhibit higher student–teacher ratios.
@@ -104,6 +106,8 @@ Across multiple modelling approaches, several consistent patterns emerged.
 * Better-developed villages generally showed lower student–teacher ratios, while poorer or more densely populated villages often exhibited higher STR values.
 * LASSO substantially reduced the number of predictors, producing a more stable and interpretable model than stepwise regression by removing redundant variables.
 * Model diagnostics suggested that heteroscedasticity and influential observations remained present, indicating that results should be interpreted as exploratory rather than causal.
+
+<img width="2700" height="1800" alt="state_level_district_effects" src="https://github.com/user-attachments/assets/59ee2994-b926-444f-89bd-39541842b5d3" />
 
 ---
 
