@@ -3,8 +3,8 @@ type: software
 title: "Mission Antyodaya Maharashtra Student–Teacher Ratio Analysis"
 description: "Reproducible R workflow analysing village-level Mission Antyodaya data to study student–teacher ratios and other rural development indicators in Maharashtra."
 authors:
-  - family-names: Louis
-    given-names: Leina
+  - family-names: Louis, Sirsat, Babar, Majumdar 
+    given-names: Leina, Aman, Prem, Adrita
 date-released: 2026-07-04
 version: 1.0.0
 repository-code: "https://github.com/leina-louis/mission-antyodaya-r-analysis"
