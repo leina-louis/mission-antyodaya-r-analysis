@@ -1,3 +1,4 @@
+<img width="2400" height="2100" alt="district_mean_str" src="https://github.com/user-attachments/assets/092c996f-d4ba-44c5-9e9c-47b9d93d3415" />
 # Mission Antyodaya Maharashtra Student–Teacher Ratio Analysis
 
 A reproducible R workflow for analysing village-level educational and development indicators from the Mission Antyodaya Survey to investigate factors associated with primary school student–teacher ratios (STR) across Maharashtra.
