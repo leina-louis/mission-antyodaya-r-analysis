@@ -2,7 +2,7 @@
 
 A reproducible R workflow analysing village-level Mission Antyodaya data to examine the relationship between student–teacher ratios and rural development indicators across Maharashtra.
 
-This project applies simple linear regression, district-level stepwise regression, state-level linear modelling, and LASSO regression to identify infrastructure and socio-economic variables associated with variation in student–teacher ratios.
+This project applies simple linear regression, district-level stepwise regression, state-level linear modelling, and LASSO regression to identify infrastructure and socio-economic variables associated with primary school student–teacher ratios.
 
 <img width="2400" height="2100" alt="district_mean_str" src="https://github.com/user-attachments/assets/d536e864-3dc6-460f-a659-52be5cd76539" />
 
@@ -67,6 +67,60 @@ The repository contains implementations of:
 - Residual diagnostics
 - Train/test validation
 - Data standardisation and preprocessing
+
+---
+
+## LASSO Results & Interpretation
+
+### Why LASSO?
+
+LASSO regression addresses key limitations from stepwise regression:
+
+1. **Prevents overfitting**: Automatically selected 18 variables from the original 47, reducing noise.
+2. **Handles multicollinearity**: When variables are highly correlated, stepwise regression produces unstable estimates with flipping signs. LASSO shrinks unreliable coefficients to zero for cleaner interpretation.
+3. **Robust regularization**: Minimizes beta values and protects against outliers.
+
+### Selected Variables (18 total)
+
+| Variable | Coefficient | Interpretation |
+|----------|-------------|-----------------|
+| **(Intercept)** | **16.58** | Base student–teacher ratio when all predictors are zero |
+| **availability_of_high_school** | **+1.86** | Villages with high schools have 1.86 higher primary STR |
+| **availability_of_middle_school** | **+1.01** | Villages with middle schools have 1.01 higher primary STR |
+| **availability_of_govt_degree_coll** | **−1.55** | Degree colleges associate with 1.55 *lower* primary STR (more teachers available) |
+| **phc** | **+0.51** | Primary health centres associate with higher STR |
+| **sub_centre** | **+0.15** | Health sub-centres show weak positive association |
+| **public_transport** | **+0.50** | Public transport availability associates with higher STR |
+| **no_electricity** | **+0.49** | Lack of electricity correlates with higher STR (possible poor teacher retention) |
+| **availability_of_adult_edu_centre** | **−0.43** | Adult education centres associate with lower primary STR |
+| **availability_of_public_library** | **+0.16** | Public libraries show weak positive association |
+| *Other variables* | negligible | Welfare scheme beneficiaries, health indicators (very small effects < 0.01) |
+
+### Key Findings
+
+**Positive associations** (higher STR):
+- Educational infrastructure concentration (high schools, middle schools) correlates with more students per teacher in primary schools—suggesting differential resource distribution across school tiers.
+- Better access to health facilities and public transport associates with slightly elevated primary STRs.
+- **Lack of electricity** surprisingly shows positive correlation, possibly indicating teacher retention issues in remote villages despite high enrollment in government schools.
+
+**Negative associations** (lower STR):
+- **Degree colleges**: Villages with higher education institutions have lower primary STRs, suggesting these areas generate local teaching talent.
+- **Adult education centres**: Associated with lower primary STRs.
+- Most welfare scheme variables and individual health metrics have negligible effects after regularization.
+
+### Model Diagnostics
+
+The residuals vs. fitted plot reveals **heteroscedasticity**—errors are funnel-shaped and concentrated around fitted values 15–25, indicating:
+- More prediction error for lower STR values
+- More reliable predictions for higher STR values
+- Some outliers remain, but substantially improved over stepwise regression
+
+### Limitations & Next Steps
+
+While LASSO provides stable, interpretable results and addresses multicollinearity, underlying data quality issues persist:
+- Residual heteroscedasticity suggests unequal variance in the outcome
+- Outliers remain in rural regions with extreme STRs
+- Model is suitable for exploratory analysis but requires data refinement, weighted estimation, or additional diagnostics before informing policy recommendations
 
 ---
 
