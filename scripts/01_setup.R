@@ -62,15 +62,15 @@ set.seed(2)
 ensure_project_dirs <- function() {
   dirs <- list(
     here("data", "processed"),
-    here("figures"),
-    here("outputs", "tables")
+    here("output", "figures"),
+    here("output", "tables")
   )
 
   invisible(lapply(dirs, dir.create, recursive = TRUE, showWarnings = FALSE))
 }
 
 save_table <- function(data, filename) {
-  readr::write_csv(data, here("outputs", "tables", filename))
+  readr::write_csv(data, here("output", "tables", filename))
 }
 
 save_processed_data <- function(data, filename) {
@@ -79,7 +79,7 @@ save_processed_data <- function(data, filename) {
 
 save_plot <- function(plot, filename, width = 9, height = 6) {
   ggplot2::ggsave(
-    filename = here("figures", filename),
+    filename = here("output", "figures", filename),
     plot = plot,
     width = width,
     height = height,
