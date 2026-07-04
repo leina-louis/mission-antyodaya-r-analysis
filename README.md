@@ -114,19 +114,31 @@ Across multiple modelling approaches, several consistent patterns emerged.
 ## Repository Structure
 
 ```text
-mission-antyodaya-r-analysis/
-
-├── scripts/
+mission-antyodaya-r-analysis
+│
+├── .git/
+├── .gitignore
+├── LICENSE
+├── README.md
+├── run_analysis.R
+│
 ├── data/
 │   ├── raw/
 │   └── processed/
+│
+├── scripts/
+│   ├── 01_setup.R
+│   ├── 02_data_import_cleaning.R
+│   ├── 03_simple_regressions.R
+│   ├── 04_stepwise_models.R
+│   ├── 05_state_model.R
+│   ├── 06_lasso_model.R
+│   └── analysis_pipeline.R
+│
 ├── outputs/
-│   └── tables/
-├── figures/
-├── report/
-├── README.md
-├── LICENSE
-└── .gitignore
+│   ├── tables/
+│
+└── figures/
 ```
 
 ---
