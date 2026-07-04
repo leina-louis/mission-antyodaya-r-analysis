@@ -18,7 +18,7 @@ This analysis determines **district-level factors influencing Student–Teacher 
 Mission Antyodaya Village Facilities Survey (2020), Ministry of Rural Development, accessed via SHRUG.
 
 **Districts Analyzed:**  
-All 33 Maharashtra districts (excluding Mumbai Suburban due to NA values): Ahmednagar, Akola, Amravati, Aurangabad, Bid, Bhandara, Buldana, Chandrapur, Dhule, Gadchiroli, Gondiya, Hingoli, Jalgaon, Jalna, Kolhapur, Latur, Nagpur, Nanded, Nandurbar, Nashik, Osmanabad, Parbhani, Pune, Raigah, Ratnagiri, Sangli, Satara, Sindhudurg, Solapur, Thane, Wardha, Washim, Yavatmal.
+All 33 Maharashtra districts (excluding Mumbai Suburban due to NA values): Ahmednagar, Akola, Amravati, Aurangabad, Bid, Bhandara, Buldana, Chandrapur, Dhule, Gadchiroli, Gondiya, Hingoli, Jalgaon, Jalna, Kolhapur, Latur, Nagpur, Nanded, Nandurbar, Nashik, Osmanabad, Parbhani, Pune, Raigad, Ratnagiri, Sangli, Satara, Sindhudurg, Solapur, Thane, Wardha, Washim, Yavatmal.
 
 **Variable Selection:**  
 48 variables (12 per theme) chosen to prevent bias and balance predictor weight:
@@ -39,7 +39,7 @@ All 33 Maharashtra districts (excluding Mumbai Suburban due to NA values): Ahmed
 ### District STR Ranges
 
 - **Highest STR (most stressed):** Hingoli, Dhule, Nashik (26–30 students per teacher)
-- **Lowest STR (best staffing):** Sindhudurg, Ratnagiri, Raigah (10–14 students per teacher)
+- **Lowest STR (best staffing):** Sindhudurg, Ratnagiri, Raigad (10–14 students per teacher)
 
 Lower STR in coastal districts correlates with lower population density and better development. Higher STR in interior/tribal districts reflects teacher shortages and higher poverty-driven enrollment.
 
@@ -107,6 +107,8 @@ Hingoli (+10.84), Dhule (+5.17), Nashik (+4.73)
 
 **Model Performance:** R² = 0.14 (explains 14% of STR variation); heteroscedasticity present in residuals.
 
+> **Caveat on interpretation:** With R² = 0.14, this model leaves 86% of STR variation unexplained. The coefficients above describe *associations within the observed data*, not reliable causal effect sizes — treat the direction of each effect (e.g., "BPL households push STR up") as more trustworthy than its exact magnitude (+0.39). Combined with the heteroscedasticity noted below, standard errors and p-values from this model should be read as indicative rather than precise, and the "Key Findings" section above should be read the same way.
+
 ---
 
 ## LASSO Regression Results
@@ -156,7 +158,7 @@ Current STR disparities (Hingoli 26–30, Sindhudurg 10–14) will worsen under 
 
 **Good fit districts:** Ahmednagar, Akola, Aurangabad, Chandrapur, Gondiya, Nagpur, Pune, Satara, Sindhudurg, Yavatmal — residuals randomly scattered around zero, similar spread across fitted values.
 
-**Poor fit districts:** Parbhani (massive outlier), Osmānabad (high noise), Sangli (data quality issues).
+**Poor fit districts:** Parbhani (massive outlier), Osmanabad (high noise), Sangli (data quality issues).
 
 ### Challenges
 
@@ -198,6 +200,9 @@ mission-antyodaya-r-analysis
 │   ├── figures/                   Publication-ready plots
 │   └── tables/                    Regression summaries, coefficients
 │
+├── tests/
+│   └── validate_output.R          Post-run output validation (see "Testing" below)
+│
 ├── .gitignore 
 ├── LICENSE
 └── README.md
@@ -223,6 +228,16 @@ Outputs automatically written to `output/tables/`, `output/figures/`, and `data/
 
 ---
 
+## Testing
+
+After running the analysis, verify the outputs with the validation script:
+```r
+source("tests/validate_output.R")
+```
+This checks that expected output directories, tables, and figures exist and are non-empty, that the cleaned dataset has the required columns (`district`, `str`, `village`), that STR values fall within the expected 0–200 range, and that all 33 districts are present. It exits with status 0 on success and 1 if any check fails, so it can also be wired into CI.
+
+---
+
 ## Requirements
 
 - **R:** 4.2 or newer
@@ -241,6 +256,6 @@ Part of a team-based data research project in applied statistics and rural devel
 ## References
 
 - Development Data Lab. (2020). SHRUG: Socioeconomic High-resolution Rural-Urban Geographic Platform. https://www.devdatalab.org/shrug
-- Hindustan Times. (2023). Teacher shortages in tribal districts; recruitment drives needed.
-- Maharashtra Human Development Report. (2012). District-level HDI rankings and literacy/income patterns.
-- Annual Survey of Education Report (ASER). (2023). Teacher deployment and facility gaps in Nandurbar and Dhule.
+- Hindustan Times. (2025, May 17). Class dismissed? State under fire for teacher shortfall in government schools. https://www.hindustantimes.com/cities/mumbai-news/class-dismissed-state-under-fire-for-teacher-shortfall-in-govt-schools-101747420979648.html
+- Government of Maharashtra / YASHADA. (2012). Maharashtra Human Development Report 2012. https://mahasdb.maharashtra.gov.in/docs/pdf/mhdr_2012.pdf — district-level HDI rankings and literacy/income patterns.
+- ASER Centre / Pratham. Annual Status of Education Report (ASER). https://asercentre.org/ — used here as general background on teacher deployment and facility gaps in rural Maharashtra; specific district-level figures for Nandurbar and Dhule should be verified against the relevant year's full report before citing.
