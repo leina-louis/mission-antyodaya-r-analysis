@@ -4,7 +4,7 @@ A reproducible R workflow for analysing village-level educational and developmen
 
 ---
 <img width="2400" height="2100" alt="district_mean_str" src="https://github.com/user-attachments/assets/092c996f-d4ba-44c5-9e9c-47b9d93d3415" />
----
+
 ## Overview
 
 This project investigates how village-level development indicators are associated with the **Student–Teacher Ratio (STR)** in Maharashtra's primary schools using data from the **2020 Mission Antyodaya Village Facilities Survey**.
