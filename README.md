@@ -1,200 +1,162 @@
 # Mission Antyodaya Maharashtra Student–Teacher Ratio Analysis
 
-A reproducible R workflow for analysing village-level educational and development indicators from the Mission Antyodaya Survey to investigate factors associated with primary school student–teacher ratios (STR) across Maharashtra.
+A reproducible R workflow analysing village-level Mission Antyodaya data to examine the relationship between student–teacher ratios and rural development indicators across Maharashtra.
 
----
-<img width="2400" height="2100" alt="district_mean_str" src="https://github.com/user-attachments/assets/092c996f-d4ba-44c5-9e9c-47b9d93d3415" />
+This project applies simple linear regression, district-level stepwise regression, state-level linear modelling, and LASSO regression to identify infrastructure and socio-economic variables associated with variation in student–teacher ratios.
 
-## Overview
-
-This project investigates how village-level development indicators are associated with the **Student–Teacher Ratio (STR)** in Maharashtra's primary schools using data from the **2020 Mission Antyodaya Village Facilities Survey**.
-
-Student–Teacher Ratio (STR), calculated as the number of primary school students divided by the number of primary school teachers, is used as a proxy for educational capacity. The project examines whether educational infrastructure, health facilities, public services, and socio-economic characteristics help explain variation in STR across districts.
-
-The analysis was originally developed as part of a university statistics project and has since been refactored into a reproducible research workflow.
+<img width="2400" height="2100" alt="district_mean_str" src="https://github.com/user-attachments/assets/d536e864-3dc6-460f-a659-52be5cd76539" />
 
 ---
 
-## Research Questions
+## Repository structure
 
-This project addresses the following questions:
-
-* Which village-level characteristics are associated with higher or lower primary school student–teacher ratios?
-* Do these relationships vary across districts in Maharashtra?
-* Which predictors remain important after accounting for multicollinearity?
-* How well do different regression approaches explain variation in student–teacher ratios?
-
----
-
-## Data
-
-The analysis uses the **Mission Antyodaya Village Facilities Survey (2020)**, administered by the Ministry of Rural Development and accessed through the SHRUG database.
-
-The cleaned dataset includes villages from **33 districts of Maharashtra**, with Mumbai Suburban excluded because the available observations contained only missing values.
-
-Student–Teacher Ratio was calculated as:
-
-> STR = Total Primary School Students / Total Primary School Teachers
-
-Only observations with valid STR values between 1 and 200 were retained.
-
----
-
-## Methodology
-
-The project follows a reproducible statistical workflow:
-
-1. Data cleaning and validation
-2. Feature engineering and calculation of Student–Teacher Ratio
-3. Exploratory analysis of district-level variation
-4. Simple linear regression for individual predictors
-5. District-wise stepwise regression models
-6. Train/test split for out-of-sample evaluation
-7. State-level regression modelling
-8. Bootstrap confidence intervals
-9. LASSO regression for variable selection
-10. Model diagnostics using residual analysis
-
-The workflow generates publication-ready figures and summary tables automatically.
-
----
-
-## Development Themes
-
-Predictor variables were grouped into four broad themes:
-
-* **Education**
-
-  * School availability
-  * Public libraries
-  * Vocational education
-  * Adult education
-  * School facilities
-
-* **Health**
-
-  * Primary Health Centres (PHCs)
-  * Sub-centres
-  * Maternal and child health
-  * Nutrition indicators
-
-* **Infrastructure**
-
-  * Water supply
-  * Electricity
-  * Public transport
-  * Banking services
-  * Internet connectivity
-
-* **Socio-economic Indicators**
-
-  * BPL households
-  * Welfare programme participation
-  * Self-help groups
-  * Agricultural support schemes
-
----
-
-## Key Findings
-
-<img width="2700" height="1800" alt="state_level_coefficients_scaled" src="https://github.com/user-attachments/assets/1f62fe52-f56a-468f-a918-db45b41e19b5" />
-
-Across multiple modelling approaches, several consistent patterns emerged.
-
-* Villages with higher enrolment pressure tended to exhibit higher student–teacher ratios.
-* Educational and health infrastructure frequently appeared as important predictors of STR.
-* Better-developed villages generally showed lower student–teacher ratios, while poorer or more densely populated villages often exhibited higher STR values.
-* LASSO substantially reduced the number of predictors, producing a more stable and interpretable model than stepwise regression by removing redundant variables.
-* Model diagnostics suggested that heteroscedasticity and influential observations remained present, indicating that results should be interpreted as exploratory rather than causal.
-
-<img width="2700" height="1800" alt="state_level_district_effects" src="https://github.com/user-attachments/assets/59ee2994-b926-444f-89bd-39541842b5d3" />
-
----
-
-## Repository Structure
-
-```text
+```
 mission-antyodaya-r-analysis
 │
-├── .git/
-├── .gitignore
-├── LICENSE
-├── README.md
 ├── run_analysis.R
 │
-├── data/
-│   ├── raw/
-│   └── processed/
-│
 ├── scripts/
+│   ├── analysis_pipeline.R
 │   ├── 01_setup.R
 │   ├── 02_data_import_cleaning.R
 │   ├── 03_simple_regressions.R
 │   ├── 04_stepwise_models.R
 │   ├── 05_state_model.R
-│   ├── 06_lasso_model.R
-│   └── analysis_pipeline.R
+│   └── 06_lasso_model.R
+│
+├── data/
+│   ├── raw/
+│   └── processed/
 │
 ├── outputs/
-│   ├── tables/
+│   └── tables/
 │
-└── figures/
+├── figures/
+│
+├── .gitignore 
+├── LICENSE
+└── .README.md
 ```
 
 ---
 
-## Reproducing the Analysis
+## Project overview
 
-1. Clone this repository.
-2. Download the required Mission Antyodaya datasets.
-3. Place the raw CSV files inside `data/raw/`.
-4. Install the required R packages.
-5. Run the analysis script.
+The analysis investigates how educational infrastructure, health facilities, public services, and welfare indicators relate to village-level student–teacher ratios (STR) in Maharashtra using Mission Antyodaya survey data.
+
+The workflow consists of:
+
+- Data cleaning and preprocessing
+- Simple linear regressions for individual predictors
+- District-wise stepwise regression models
+- State-level multiple linear regression
+- LASSO regression for robust variable selection
+- Diagnostic plots and model evaluation
+- Automatic export of publication-ready figures and summary tables
+
+---
+
+## Methods
+
+The repository contains implementations of:
+
+- Simple linear regression
+- Stepwise model selection (AIC)
+- State-level multiple linear regression
+- LASSO regression using glmnet
+- Bootstrap confidence intervals
+- Residual diagnostics
+- Train/test validation
+- Data standardisation and preprocessing
+
+---
+
+## Repository outputs
+
+Running the project generates:
+
+- Cleaned datasets
+- Regression summary tables
+- Significant predictor tables
+- Model performance statistics
+- Bootstrap confidence intervals
+- District comparison plots
+- Residual diagnostic plots
+- LASSO coefficient summaries
+
+All outputs are written automatically to the appropriate folders.
+
+---
+
+## Requirements
+
+R (version 4.2 or newer recommended)
+
+Packages used include:
+
+- boot
+- broom
+- dplyr
+- ggplot2
+- glmnet
+- here
+- MASS
+- patchwork
+- purrr
+- readr
+- stringr
+- tibble
+- tidyr
+
+---
+
+## Running the analysis
+
+Clone the repository and place the original Mission Antyodaya datasets inside
+
+```
+data/raw/
+```
+
+Then run
+
+```r
+source("run_analysis.R")
+```
 
 The workflow automatically:
 
-* cleans the data,
-* produces regression models,
-* evaluates model performance,
-* generates diagnostic plots,
-* exports figures,
-* writes summary tables to the `outputs/` directory.
+- imports raw data
+- cleans and prepares datasets
+- fits all statistical models
+- generates figures
+- exports summary tables
 
 ---
 
-## Software
+## Example outputs
 
-This project was developed in **R** using packages including:
+<img width="2700" height="1800" alt="state_level_coefficients_scaled" src="https://github.com/user-attachments/assets/3eb58e8e-23d2-495e-84d1-baeafe311c50" />
 
-* dplyr
-* ggplot2
-* glmnet
-* broom
-* MASS
-* boot
-* patchwork
-* tidyr
-* readr
-* purrr
+<img width="2700" height="1800" alt="state_level_district_effects" src="https://github.com/user-attachments/assets/7a08d1e3-e0f9-42fd-919b-e93da7537113" />
 
----
+<img width="3000" height="3000" alt="simple_vs_stepwise_aurangabad" src="https://github.com/user-attachments/assets/417fbd3d-29c8-42f1-b877-6f3495591b20" />
 
-## Limitations
+<img width="2400" height="1500" alt="state_level_residuals_vs_fitted" src="https://github.com/user-attachments/assets/cd06cdf8-a834-465a-8c1c-c8a77edc6662" />
 
-This project is intended as an exploratory statistical analysis.
+<img width="2400" height="1500" alt="lasso_residuals_vs_fitted" src="https://github.com/user-attachments/assets/42869fa7-d2ca-4b89-a0c4-22511d86c610" />
 
-Several limitations should be considered:
+Examples include:
 
-* Student–Teacher Ratio is only one proxy for educational development.
-* The analysis identifies statistical associations rather than causal relationships.
-* Missing values and outliers required extensive cleaning.
-* Heteroscedasticity remained present in several models.
-* Stepwise regression showed sensitivity to multicollinearity, motivating the use of LASSO for variable selection.
-
-Future work could incorporate population-weighted measures, spatial modelling, and longitudinal data to improve inference.
+- State-level coefficient estimates
+- District effects
+- Residual diagnostics
+- LASSO residual plot
 
 ---
 
-## License
+## Author
 
-This project is released under the MIT License.
+**Leina Louis**
+
+Undergraduate research project in applied statistics and rural development for Statistical Primciples through Computation course.
