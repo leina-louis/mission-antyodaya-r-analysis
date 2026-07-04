@@ -29,11 +29,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## Future Improvements (Planned)
-
-- [ ] Automated CI/CD validation via GitHub Actions
-- [ ] Robust standard errors (HC3/HC4) for heteroscedasticity correction
-- [ ] Interaction term exploration (e.g., education × socio-economic)
-- [ ] Sensitivity analysis and out-of-sample validation
-- [ ] District-specific report generation
-- [ ] Web-based interactive dashboard for findings
