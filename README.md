@@ -16,7 +16,7 @@ mission-antyodaya-r-analysis
 ├── run_analysis.R
 │
 ├── scripts/
-│   ├── analysis_pipeline.R
+│   ├── 00_utils.R
 │   ├── 01_setup.R
 │   ├── 02_data_import_cleaning.R
 │   ├── 03_simple_regressions.R
@@ -28,21 +28,20 @@ mission-antyodaya-r-analysis
 │   ├── raw/
 │   └── processed/
 │
-├── outputs/
+├── output/
+│   ├── figures/
 │   └── tables/
-│
-├── figures/
 │
 ├── .gitignore 
 ├── LICENSE
-└── .README.md
+└── README.md
 ```
 
 ---
 
 ## Project overview
 
-The analysis investigates how educational infrastructure, health facilities, public services, and welfare indicators relate to village-level student–teacher ratios (STR) in Maharashtra using Mission Antyodaya survey data.
+The analysis investigates how educational infrastructure, health facilities, public services, and welfare indicators relate to village-level student–teacher ratios (STR) in Maharashtra using Mission Antyodaya data.
 
 The workflow consists of:
 
@@ -159,4 +158,4 @@ Examples include:
 
 **Leina Louis**
 
-Undergraduate research project in applied statistics and rural development for Statistical Primciples through Computation course.
+Undergraduate research project in applied statistics and rural development for Statistical Principles through Computation course.
