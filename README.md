@@ -251,6 +251,15 @@ This checks that expected output directories, tables, and figures exist and are 
 
 Part of a team-based data research project in applied statistics and rural development for *Statistical Principles through Computation* course.
 
+## Contributors
+
+This was a 4-member group project. Individual contributions:
+
+- **Leina Louis** — Data cleaning, simple regression, stepwise model construction and train/test evaluation, and LASSO model.
+- **Aman Sirsat** — State-level model with district-level dummies, residual diagnostics, and bootstrapped confidence intervals for significant coefficients.
+- **Prem Babar** — State-level model with district-level dummies, residual diagnostics, and bootstrapped confidence intervals for significant coefficients.
+- **Adrita Majumdar** — Research framing and presentation of findings.
+
 ---
 
 ## References
