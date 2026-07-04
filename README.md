@@ -232,9 +232,9 @@ Outputs automatically written to `output/tables/`, `output/figures/`, and `data/
 
 ## Author
 
-**Leina Louis, Aman, Adrita, Prem**
+*Leina Louis*
 
-Undergraduate research project in applied statistics and rural development for *Statistical Principles through Computation* course.
+Part of a team-based data research project in applied statistics and rural development for *Statistical Principles through Computation* course.
 
 ---
 
